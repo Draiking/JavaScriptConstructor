@@ -7,7 +7,8 @@ const model = [
             '222222',
             '333333',
         ]
-    }
+    },
+    {type: 'image', value: './assets/image.jpg'}
 ]
 
 const $site = document.querySelector('#site')
@@ -21,12 +22,13 @@ model.forEach(block => {
         html = text(block)
     } else if (block.type === 'columns') {
         html = columns(block)
+    } else if (block.type === 'image') {
+        html = image(block)
     }
 
     $site.insertAdjacentHTML('beforeend', html)
 
 })
-
 
 function title(block) {
     return `
@@ -48,22 +50,20 @@ function text(block) {
     `
 }
 
-
 function columns(block) {
-    // 1 способ вывода даных через forEach(НЕ КРАСИВЫЙ)
-    // let html = ''
-    // block.value.forEach(item => {
-    //     html += `
-    //     <div class="col-sm">
-    //     ${item}
-    //     </div>`
-    // })
-
     const html = block.value.map(item => `<div class="col-sm">${item}</div>`)
     
     return `
     <div class="row">
         ${html.join('')}
     </div>
+    `
+}
+
+function image(block) {
+    return `
+        <div class="row">
+            <img src="${block.value}" />
+        </div>
     `
 }
