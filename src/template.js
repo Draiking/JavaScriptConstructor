@@ -1,4 +1,4 @@
-export function title(block) {
+function title(block) {
     return `
     <div class="row">
         <div class="col-sm">
@@ -8,7 +8,7 @@ export function title(block) {
 `
 }
 
-export function text(block) {
+function text(block) {
     return `
     <div class="row">
     <div class="col-sm">
@@ -18,7 +18,7 @@ export function text(block) {
     `
 }
 
-export function columns(block) {
+function columns(block) {
     const html = block.value.map(item => `<div class="col-sm">${item}</div>`)
     
     return `
@@ -34,4 +34,11 @@ function image(block) {
             <img src="${block.value}" />
         </div>
     `
+}
+
+export const templates = {
+    title,
+    text,
+    image,
+    columns
 }
